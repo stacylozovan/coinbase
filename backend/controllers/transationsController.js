@@ -1,25 +1,22 @@
-const db = require('../models/db');
+const Transaction = require('../models/transactionModel');
 
 exports.getAll = (req, res) => {
-  const { account_id, category } = req.query;
-  let query = "SELECT * FROM transactions";
-  let conditions = [];
-  let values = [];
+  Transaction.getAll((err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+};
 
-  if (account_id) {
-    conditions.push("account_id = ?");
-    values.push(account_id);
-  }
-  if (category) {
-    conditions.push("category = ?");
-    values.push(category);
-  }
+exports.create = (req, res) => {
+  Transaction.create(req.body, (err, result) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.status(201).json({ message: 'Transaction added', id: result.id });
+  });
+};
 
-  if (conditions.length) {
-    query += " WHERE " + conditions.join(" AND ");
-  }
-
-  db.all(query, values, (err, rows) => {
+exports.getByAccount = (req, res) => {
+  const id = req.params.id;
+  Transaction.getByAccountId(id, (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json(rows);
   });
