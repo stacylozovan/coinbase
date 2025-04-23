@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Transaction</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <h1>Add a New Transaction</h1>
+  <nav>
+    <a href="index.html">Dashboard</a>
+    <a href="transactions.html">Transactions</a>
+  </nav>
+</header>
+
+<main>
+  <section class="card">
+    <form id="transaction-form">
+      <label>Account ID:</label>
+      <input type="number" name="account_id" required />
+
+      <label>Amount (€):</label>
+      <input type="number" name="amount" required />
+
+      <label>Category:</label>
+      <input type="text" name="category" required />
+
+      <label>Description:</label>
+      <input type="text" name="description" />
+
+      <button type="submit">Add Transaction</button>
+    </form>
+
+    <p id="result-msg"></p>
+  </section>
+</main>
+
+<script>
+  const form = document.getElementById('transaction-form');
+  const result = document.getElementById('result-msg');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    fetch('http://localhost:3000/transactions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(response => {
+        if (response.id) {
+          result.textContent = "✅ Transaction added successfully!";
+          form.reset();
+        } else {
+          result.textContent = "❌ Failed to add transaction.";
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        result.textContent = "❌ An error occurred.";
+      });
+  });
+</script>
+</body>
+</html>
