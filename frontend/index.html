@@ -4,30 +4,122 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CoinProgram Dashboard</title>
+
+  <!-- Fonts: Montserrat (headings), Open Sans (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
-  <h1>💰 CoinProgram</h1>
-  <nav>
-    <a href="index.html">Dashboard</a>
+
+<div style="display: flex;">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>💰 CoinProgram</h2>
+    <a class="active" href="index.html">Dashboard</a>
     <a href="transactions.html">Transactions</a>
     <a href="add.html">Add Transaction</a>
-  </nav>
-</header>
+    <a href="#">Budget</a>
+    <a href="#">Investment</a>
+    <a href="#">Help</a>
+    <a href="#">Settings</a>
+  </aside>
 
-<main>
-  <section class="card">
-    <h2>Total Balance</h2>
-    <p id="balance">Loading...</p>
-  </section>
+  <!-- Main Dashboard Area -->
+  <div style="flex-grow: 1; margin-left: 240px; padding: 1rem;">
+    <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+      <h1 class="title">Dashboard</h1>
 
-  <section class="card">
-    <h2>Recent Transactions</h2>
-    <ul id="transaction-list"></ul>
-  </section>
-</main>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <!-- Search Bar -->
+        <div style="position: relative;">
+          <input
+            type="text"
+            placeholder="Search"
+            style="
+              padding: 0.5rem 2rem 0.5rem 2.5rem;
+              border-radius: 0.75rem;
+              border: 1px solid #ccc;
+              font-family: 'Open Sans';
+            "
+          />
+          <span style="
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: gray;
+          ">🔍</span>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="themeToggle" style="
+          padding: 0.5rem 1rem;
+          border-radius: 0.75rem;
+          border: 1px solid #ddd;
+          background-color: white;
+          cursor: pointer;
+        ">
+          🌓 Theme
+        </button>
+
+        <!-- User Info -->
+        <div style="
+          background: #f3f4f6;
+          padding: 0.5rem 1rem;
+          border-radius: 999px;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        ">
+          <span>👤</span> Stacy Lozovan ▾
+        </div>
+      </div>
+    </header>
+
+    <!-- Summary Cards -->
+    <section style="display: flex; gap: 1rem; flex-wrap: wrap;">
+      <div class="card" style="flex: 1 1 200px;">
+        <h3>Assets</h3>
+        <p id="assets-amount">0 €</p>
+      </div>
+      <div class="card" style="flex: 1 1 200px;">
+        <h3>Balance</h3>
+        <p id="balance">Loading...</p>
+      </div>
+      <div class="card" style="flex: 1 1 200px;">
+        <h3>Income</h3>
+        <p id="income-amount">0 €</p>
+      </div>
+      <div class="card" style="flex: 1 1 200px;">
+        <h3>Expense</h3>
+        <p id="expense-amount">0 €</p>
+      </div>
+    </section>
+
+    <!-- Monthly Budget (placeholder) -->
+    <section class="card">
+      <h2>Monthly Budget</h2>
+      <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+        <div><strong>🏠</strong> Housing: <span>€1,000</span></div>
+        <div><strong>🚗</strong> Transport: <span>€300</span></div>
+        <div><strong>🎓</strong> Education: <span>€800</span></div>
+      </div>
+    </section>
+
+    <!-- Recent Transactions -->
+    <section class="card">
+      <h2>Recent Transactions</h2>
+      <ul id="transaction-list"></ul>
+    </section>
+
+    <!-- Financial Statistics (placeholder for bar chart) -->
+    <section class="card">
+      <h2>Financial Statistics</h2>
+      <p>[Chart Coming Soon]</p>
+    </section>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>

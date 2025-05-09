@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Transactions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div style="display: flex;">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>💰 CoinProgram</h2>
+    <a href="index.html">Dashboard</a>
+    <a class="active" href="transactions.html">Transactions</a>
+    <a href="add.html">Add Transaction</a>
+    <a href="#">Budget</a>
+    <a href="#">Investment</a>
+    <a href="#">Help</a>
+    <a href="#">Settings</a>
+  </aside>
+
+  <!-- Main Content -->
+  <div style="flex-grow: 1; margin-left: 240px; padding: 1rem;">
+    <header style="display: flex; justify-content: space-between; align-items: center;">
+      <h1 class="title">All Transactions</h1>
+      <button id="themeToggle">🌓 Theme</button>
+    </header>
+
+    <main>
+      <section class="card">
+        <ul id="all-transactions" style="list-style: none; padding: 0;"></ul>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+    });
+  }
+
+  const container = document.getElementById('all-transactions');
+
+  fetch('http://localhost:3000/transactions')
+    .then(res => {
+      if (!res.ok) throw new Error(`Server error: ${res.status}`);
+      return res.json();
+    })
+    .then(transactions => {
+      container.innerHTML = '';
+
+      if (!transactions.length) {
+        container.innerHTML = '<li>No transactions found.</li>';
+        return;
+      }
+
+      transactions.forEach(tx => {
+        const li = document.createElement('li');
+        li.style.padding = '0.75rem 1rem';
+        li.style.borderBottom = '1px solid #ddd';
+        li.style.display = 'flex';
+        li.style.justifyContent = 'space-between';
+
+        li.innerHTML = `
+          <span><strong>${tx.category}</strong> - ${tx.description || ''}</span>
+          <span style="color: ${tx.amount < 0 ? 'var(--danger)' : 'var(--success)'};">
+            ${tx.amount} €
+          </span>
+        `;
+        container.appendChild(li);
+      });
+    })
+    .catch(err => {
+      container.innerHTML = '<li>Error loading transactions</li>';
+      console.error('Fetch error:', err);
+    });
+</script>
+
+</body>
+</html>
