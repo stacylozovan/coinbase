@@ -2,8 +2,8 @@
   --bg: #f9fafb;
   --text: #1f2937;
   --card-bg: #ffffff;
-  --header-bg: #9c27b0; /* Light purple */
-  --accent: #b388dd;     /* Lighter purple for highlights */
+  --header-bg: #ec4899;
+  --accent: #f8b6d2;
   --success: #7e57c2;
   --danger: #e57373;
   --text-muted: #6b7280;
@@ -18,7 +18,7 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
-  background: var(--bg) url('your-image.jpg') no-repeat center center fixed;
+  background: var(--bg) url('resources/piggy2.jpeg') no-repeat center center fixed;
   background-size: cover;
   color: var(--text);
   padding: 1rem;
