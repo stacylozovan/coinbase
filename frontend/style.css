@@ -18,7 +18,8 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
-  background: var(--bg);
+  background: var(--bg) url('your-image.jpg') no-repeat center center fixed;
+  background-size: cover;
   color: var(--text);
   padding: 1rem;
 }
@@ -28,13 +29,10 @@ h1, h2, h3, .title {
   font-family: 'Montserrat', sans-serif;
 }
 
-/* Header */
+/* Header (no background) */
 header {
-  background: var(--header-bg);
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 1rem;
-  margin-bottom: 1.5rem;
+  color: var(--text);
+  margin-bottom: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -55,7 +53,7 @@ nav a {
   margin-bottom: 1.5rem;
 }
 
-/* Sidebar base (we'll add full layout in next step) */
+/* Sidebar base */
 .sidebar {
   background: var(--card-bg);
   width: 220px;
@@ -84,6 +82,16 @@ nav a {
   background: var(--accent);
   color: white;
 }
+.sidebar h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
 
 /* Dark Theme */
 body.dark {
@@ -102,6 +110,10 @@ body.dark {
     height: auto;
     flex-direction: row;
     overflow-x: auto;
+  }
+  .main-content {
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   header {
