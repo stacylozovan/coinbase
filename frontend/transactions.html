@@ -15,18 +15,46 @@
     <h2>💰 LozFin</h2>
     <a href="index.html">Dashboard</a>
     <a class="active" href="transactions.html">Transactions</a>
-    <a href="add.html">Add Transaction</a>
-    <a href="#">Budget</a>
+    <a href="budget.html">Budget</a>
     <a href="#">Investment</a>
     <a href="#">Help</a>
     <a href="#">Settings</a>
   </aside>
 
   <!-- Main Content -->
-  <div style="flex-grow: 1; margin-left: 240px; padding: 1rem;">
-    <header style="display: flex; justify-content: space-between; align-items: center;">
-      <h1 class="title">All Transactions</h1>
-      <button id="themeToggle">🌓 Theme</button>
+  <div class="main-content" style="flex-grow: 1; margin-left: 240px; padding: 1rem;">
+    <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <h1 class="title">All Transactions</h1>
+        <a href="add.html" class="header-button" style="text-decoration: none;">➕ Add</a>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <!-- Search Bar -->
+        <div style="position: relative;">
+          <input
+            type="text"
+            placeholder="Search"
+            class="search-input"
+            style="width: 160px;"
+          />
+          <span style="
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: gray;
+          ">🔍</span>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="themeToggle" class="header-button">🌓 Theme</button>
+
+        <!-- User Button -->
+        <button class="header-button">
+          <span>👤</span> Stacy Lozovan ▾
+        </button>
+      </div>
     </header>
 
     <main>
@@ -37,50 +65,7 @@
   </div>
 </div>
 
-<script>
-  const themeToggle = document.getElementById('themeToggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-    });
-  }
-
-  const container = document.getElementById('all-transactions');
-
-  fetch('http://localhost:3000/transactions')
-    .then(res => {
-      if (!res.ok) throw new Error(`Server error: ${res.status}`);
-      return res.json();
-    })
-    .then(transactions => {
-      container.innerHTML = '';
-
-      if (!transactions.length) {
-        container.innerHTML = '<li>No transactions found.</li>';
-        return;
-      }
-
-      transactions.forEach(tx => {
-        const li = document.createElement('li');
-        li.style.padding = '0.75rem 1rem';
-        li.style.borderBottom = '1px solid #ddd';
-        li.style.display = 'flex';
-        li.style.justifyContent = 'space-between';
-
-        li.innerHTML = `
-          <span><strong>${tx.category}</strong> - ${tx.description || ''}</span>
-          <span style="color: ${tx.amount < 0 ? 'var(--danger)' : 'var(--success)'};">
-            ${tx.amount} €
-          </span>
-        `;
-        container.appendChild(li);
-      });
-    })
-    .catch(err => {
-      container.innerHTML = '<li>Error loading transactions</li>';
-      console.error('Fetch error:', err);
-    });
-</script>
+<script src="transactions.js"></script>
 
 </body>
 </html>

@@ -21,18 +21,26 @@ db.serialize(() => {
     )
   `);
 
-  // Create Transactions table
   db.run(`
     CREATE TABLE IF NOT EXISTS transactions (
-                                              id INTEGER PRIMARY KEY AUTOINCREMENT,
-                                              account_id INTEGER NOT NULL,
-                                              amount REAL NOT NULL,
-                                              category TEXT,
-                                              description TEXT,
-                                              date TEXT DEFAULT CURRENT_DATE,
-                                              FOREIGN KEY (account_id) REFERENCES accounts(id)
-      )
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      account_id INTEGER NOT NULL,
+      amount REAL NOT NULL,
+      category TEXT,
+      description TEXT,
+      date TEXT DEFAULT CURRENT_DATE,
+      FOREIGN KEY (account_id) REFERENCES accounts(id)
+    )
+  `);
+
+  db.run(`
+    CREATE TABLE IF NOT EXISTS budgets (
+                                         id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                         category TEXT NOT NULL,
+                                         amount INTEGER NOT NULL
+    )
   `);
 });
+
 
 module.exports = db;

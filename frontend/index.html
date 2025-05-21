@@ -17,14 +17,13 @@
     <h2>💰 LozFin</h2>
     <a class="active" href="index.html">Dashboard</a>
     <a href="transactions.html">Transactions</a>
-    <a href="add.html">Add Transaction</a>
-    <a href="#">Budget</a>
-    <a href="#">Investment</a>
+    <a href="budget.html">Budget</a>
+    <a href="#">Future Fund</a>
     <a href="#">Help</a>
     <a href="#">Settings</a>
   </aside>
 
-  <!-- Main Dashboard Area -->
+  <!-- Main Dashboard  -->
   <div class="main-content" style="flex-grow: 1; margin-left: 240px; padding: 1rem;">
     <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
       <h1 class="title">Dashboard</h1>
@@ -35,49 +34,23 @@
           <input
             type="text"
             placeholder="Search"
-            style="
-              width: 160px;
-              padding: 0.5rem 2rem 0.5rem 2.5rem;
-              border-radius: 0.75rem;
-              border: 1px solid #ccc;
-              font-family: 'Open Sans';
-            "
+            class="search-input"
+            style="width: 160px;"
           />
           <span style="
-            position: absolute;
-            left: 0.75rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: gray;
-          ">🔍</span>
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+  ">🔍</span>
         </div>
 
         <!-- Theme Toggle -->
-        <button id="themeToggle" style="
-          padding: 0.5rem 1rem;
-          border-radius: 0.75rem;
-          color: gray;
-          border: 1px solid #ddd;
-          background-color: white;
-          cursor: pointer;
-        ">
-          🌓 Theme
-        </button>
+        <button id="themeToggle" class="header-button">🌓 Theme</button>
 
         <!-- User Button -->
-        <button style="
-          padding: 0.5rem 1rem;
-          border-radius: 0.75rem;
-          border: 1px solid #ddd;
-          background-color: white;
-          font-weight: 600;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          cursor: pointer;
-          font-family: 'Open Sans';
-          color: var(--text);
-        ">
+        <button class="header-button">
           <span>👤</span> Stacy Lozovan ▾
         </button>
       </div>
@@ -103,15 +76,12 @@
       </div>
     </section>
 
-    <!-- Monthly Budget (placeholder) -->
+    <!-- Monthly Budget (real data) -->
     <section class="card">
       <h2>Monthly Budget</h2>
-      <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
-        <div><strong>🏠</strong> Housing: <span>€1,000</span></div>
-        <div><strong>🚗</strong> Transport: <span>€300</span></div>
-        <div><strong>🎓</strong> Education: <span>€800</span></div>
-      </div>
+      <div id="dashboard-budget" style="display: flex; gap: 2rem; flex-wrap: wrap;"></div>
     </section>
+
 
     <!-- Recent Transactions -->
     <section class="card">
@@ -119,7 +89,7 @@
       <ul id="transaction-list"></ul>
     </section>
 
-    <!-- Financial Statistics (placeholder for bar chart) -->
+    <!-- Financial Statistics  -->
     <section class="card">
       <h2>Financial Statistics</h2>
       <p>[Chart Coming Soon]</p>
@@ -127,6 +97,6 @@
   </div>
 </div>
 
-<script src="script.js"></script>
+<script src="index.js"></script>
 </body>
 </html>

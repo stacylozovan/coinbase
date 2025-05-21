@@ -51,3 +51,23 @@ if (transactionList) {
       console.error('Fetch error:', err);
     });
 }
+const dashboardBudget = document.getElementById('dashboard-budget');
+
+if (dashboardBudget) {
+  fetch('http://localhost:3000/budgets')
+    .then(res => res.json())
+    .then(budgets => {
+      dashboardBudget.innerHTML = '';
+
+      budgets.forEach(budget => {
+        dashboardBudget.innerHTML += `
+          <div><strong>📂</strong> ${budget.category}: <span>€${budget.amount}</span></div>
+        `;
+      });
+    })
+    .catch(err => {
+      dashboardBudget.innerHTML = '<p>⚠️ Failed to load budget data.</p>';
+      console.error(err);
+    });
+}
+

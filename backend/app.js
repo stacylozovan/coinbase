@@ -6,6 +6,9 @@ require('./models/db');
 
 const accountsRoutes = require('./routes/accountsRoutes');
 const transactionsRoutes = require('./routes/transactionsRoutes');
+const budgetRoutes = require('./routes/budgetRoutes');
+
+
 
 const app = express();
 app.use(cors());
@@ -13,6 +16,10 @@ app.use(express.json());
 
 app.use('/accounts', accountsRoutes);
 app.use('/transactions', transactionsRoutes);
+app.use('/budgets', budgetRoutes);
+
+
+
 
 app.get('/', (req, res) => {
   res.send('💰 CoinProgram API is running.');

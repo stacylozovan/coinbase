@@ -8,6 +8,9 @@
   --danger: #e57373;
   --text-muted: #6b7280;
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --button-bg: #ffffff;
+  --button-text: #1f2937;
+
 }
 
 * {
@@ -24,12 +27,12 @@ body {
   padding: 1rem;
 }
 
-/* Typography */
+
 h1, h2, h3, .title {
   font-family: 'Montserrat', sans-serif;
 }
 
-/* Header (no background) */
+/* Header */
 header {
   color: var(--text);
   margin-bottom: 2rem;
@@ -46,18 +49,24 @@ nav a {
 }
 
 .card {
-  background: var(--card-bg);
+  background: rgba(255, 255, 255, 0.8);
   padding: 1.5rem;
   border-radius: 1rem;
   box-shadow: var(--shadow);
   margin-bottom: 1.5rem;
+  backdrop-filter: blur(6px);
+}
+body.dark .card {
+  background: rgba(31, 31, 31, 0.8);
+  backdrop-filter: blur(6px);
 }
 
-/* Sidebar base */
+
+/* Sidebar */
 .sidebar {
-  background: var(--card-bg);
-  width: 220px;
+  background: rgba(255, 255, 255, 0.8); /* semi-transparent for glass effect */
   padding: 1rem;
+  width: 220px;
   border-radius: 1rem;
   box-shadow: var(--shadow);
   position: fixed;
@@ -65,7 +74,13 @@ nav a {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  backdrop-filter: blur(6px); /* glassmorphism */
 }
+body.dark .sidebar {
+  background: rgba(31, 31, 31, 0.8);
+  backdrop-filter: blur(6px);
+}
+
 
 .sidebar a {
   text-decoration: none;
@@ -100,6 +115,9 @@ body.dark {
   --card-bg: #1f1f1f;
   --header-bg: #7c3aed;
   --accent: #9f7aea;
+  --button-bg: #2a2a2a;
+  --button-text: #f3f3f3;
+
 }
 
 /* Responsive */
@@ -114,6 +132,7 @@ body.dark {
   .main-content {
     max-width: 1200px;
     margin: 0 auto;
+    overflow-y: auto;
   }
 
   header {
@@ -125,4 +144,101 @@ body.dark {
     margin: 0.5rem 0 0;
     display: block;
   }
+ }
+.search-input {
+  padding: 0.5rem 2rem 0.5rem 2.5rem;
+  border-radius: 1rem;
+  border: 1px solid #ccc;
+  background-color: var(--button-bg);
+  font-family: 'Open Sans';
+  color: var(--button-text);
+  outline: none;
 }
+
+.header-button {
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid #ddd;
+  background-color: var(--button-bg);
+  font-weight: 600;
+  font-family: 'Open Sans';
+  cursor: pointer;
+  color: var(--button-text);
+}
+.center-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  padding: 2rem;
+}
+.form-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row label {
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.form-row input {
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  font-family: 'Open Sans';
+}
+
+#budget-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+
+#budget-list .card {
+  margin: 0;
+  padding: 1rem;
+}
+.budget-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 0;
+  max-width: 400px;
+}
+
+.budget-form input {
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid #ccc;
+  font-family: 'Open Sans';
+  font-size: 1rem;
+  outline: none;
+}
+
+.budget-form input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(248, 182, 210, 0.3);
+}
+
+.budget-form button {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--accent);
+  background-color: white;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.budget-form button:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+

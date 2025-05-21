@@ -21,3 +21,12 @@ exports.getByAccount = (req, res) => {
     res.json(rows);
   });
 };
+
+// ✅ NEW: Delete a transaction by ID
+exports.delete = (req, res) => {
+  const id = req.params.id;
+  Transaction.delete(id, (err) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ message: 'Transaction deleted', id });
+  });
+};
