@@ -1,11 +1,14 @@
 const Transaction = require('../models/transactionModel');
 
 exports.getAll = (req, res) => {
-  Transaction.getAll((err, rows) => {
+  const { category, min, max } = req.query;
+
+  Transaction.getFiltered({ category, min, max }, (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json(rows);
   });
 };
+
 
 exports.create = (req, res) => {
   Transaction.create(req.body, (err, result) => {
@@ -22,7 +25,7 @@ exports.getByAccount = (req, res) => {
   });
 };
 
-// ✅ NEW: Delete a transaction by ID
+// Delete a transaction by ID
 exports.delete = (req, res) => {
   const id = req.params.id;
   Transaction.delete(id, (err) => {
@@ -30,3 +33,14 @@ exports.delete = (req, res) => {
     res.json({ message: 'Transaction deleted', id });
   });
 };
+// Update a transaction by ID
+exports.update = (req, res) => {
+  const id = req.params.id;
+  const updatedData = req.body;
+
+  Transaction.update(id, updatedData, (err) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ message: 'Transaction updated', id });
+  });
+};
+
