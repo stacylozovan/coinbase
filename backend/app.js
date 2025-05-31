@@ -19,7 +19,7 @@ app.use(express.json());
 app.use('/accounts', accountsRoutes);
 app.use('/transactions', transactionsRoutes);
 app.use('/budgets', budgetRoutes);
-app.use('/futurefund', futureFundRoutes);
+app.use('/futurefunds', futureFundRoutes);
 
 
 

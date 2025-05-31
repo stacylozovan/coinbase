@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Future Fund</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div style="display: flex;">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>💰 LozFin</h2>
+    <a href="index.html">Dashboard</a>
+    <a href="transactions.html">Transactions</a>
+    <a href="budget.html">Budget</a>
+    <a class="active" href="futurefund.html">Future Fund</a>
+    <a href="help.html">Help</a>
+    <a href="#">Settings</a>
+  </aside>
+
+  <!-- Main Content -->
+  <div style="flex-grow: 1; margin-left: 240px; padding: 1rem;">
+    <header style="display: flex; justify-content: space-between; align-items: center;">
+      <h1 class="title">Future Fund Goals</h1>
+      <button id="themeToggle" class="header-button">🌓 Theme</button>
+    </header>
+
+    <main class="center-wrapper">
+      <div style="display: flex; flex-direction: column; gap: 2rem; width: 100%; max-width: 800px;">
+
+        <!-- 💡 Goal Form -->
+        <section class="card">
+          <form id="futurefund-form" style="display: flex; flex-direction: column; gap: 1rem;">
+            <div class="form-row">
+              <label for="goal">Goal Name:</label>
+              <input type="text" name="goal" id="goal" required />
+            </div>
+
+            <div class="form-row">
+              <label for="target">Target Amount (€):</label>
+              <input type="number" name="target" id="target" required />
+            </div>
+
+            <div class="form-row">
+              <label for="saved">Already Saved (€):</label>
+              <input type="number" name="saved" id="saved" value="0" />
+            </div>
+
+            <button type="submit" class="header-button" style="align-self: flex-start;">
+              ➕ Add Goal
+            </button>
+          </form>
+
+          <p id="result-msg" style="margin-top: 1rem;"></p>
+        </section>
+
+        <!-- 📋 Goals List -->
+        <section class="card">
+          <h2 style="margin-bottom: 1rem;">Your Goals</h2>
+          <ul id="futurefund-list" style="list-style: none; padding: 0;"></ul>
+        </section>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="futurefund.js"></script>
+</body>
+</html>

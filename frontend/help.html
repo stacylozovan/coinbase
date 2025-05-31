@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help & Support</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div style="display: flex;">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>💰 LozFin</h2>
+    <a href="index.html">Dashboard</a>
+    <a href="transactions.html">Transactions</a>
+    <a href="budget.html">Budget</a>
+    <a href="futurefund.html">Future Fund</a>
+    <a class="active" href="help.html">Help</a>
+    <a href="#">Settings</a>
+  </aside>
+
+  <!-- Main Content -->
+  <div style="flex-grow: 1; margin-left: 240px; padding: 1rem;">
+    <header style="display: flex; justify-content: space-between; align-items: center;">
+      <h1 class="title">Help & Support</h1>
+      <button id="themeToggle">🌓 Theme</button>
+    </header>
+
+    <main class="center-wrapper">
+      <section class="card help-wrapper">
+        <div class="faq">
+          <h2>FAQ</h2>
+          <details open>
+            <summary>How do I add a transaction?</summary>
+            <p>Go to the "Transactions" page and fill out the form to add a new transaction.</p>
+          </details>
+          <details>
+            <summary>How can I edit or delete a goal?</summary>
+            <p>You can edit or delete a goal from the Goals page by clicking the pencil or trash icon.</p>
+          </details>
+          <details>
+            <summary>What is Future Fund?</summary>
+            <p>Future Fund helps you set and track long-term savings goals in your personal finance app.</p>
+          </details>
+        </div>
+
+        <div class="bottom-section" style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem;">
+          <div class="box" style="flex: 1 1 300px;">
+            <h3>Contact Us</h3>
+            <p>If you need further assistance, please email us:</p>
+            <input type="email" placeholder="Enter your email">
+            <button>Submit</button>
+          </div>
+
+          <div class="box tips" style="flex: 1 1 300px;">
+            <h3>💡 Helpful Tips</h3>
+            <ul>
+              <li>💡 Click the pencil icon✏️ to edit a transaction.</li>
+              <li>💡 Use the Future Fund to set and track your savings goals.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- Load external JS file -->
+<script src="help.js"></script>
+
+</body>
+</html>
