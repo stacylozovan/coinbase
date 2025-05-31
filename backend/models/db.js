@@ -11,7 +11,6 @@ const db = new sqlite3.Database(path.join(__dirname, '..', 'finance.db'), (err) 
   console.log('✅ Connected to the SQLite database.');
 });
 
-// Create Accounts table
 db.serialize(() => {
   db.run(`
     CREATE TABLE IF NOT EXISTS accounts (
@@ -23,14 +22,14 @@ db.serialize(() => {
 
   db.run(`
     CREATE TABLE IF NOT EXISTS transactions (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      account_id INTEGER NOT NULL,
-      amount REAL NOT NULL,
-      category TEXT,
-      description TEXT,
-      date TEXT DEFAULT CURRENT_DATE,
-      FOREIGN KEY (account_id) REFERENCES accounts(id)
-    )
+                                              id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                              account_id INTEGER NOT NULL,
+                                              amount REAL NOT NULL,
+                                              category TEXT,
+                                              description TEXT,
+                                              date TEXT DEFAULT CURRENT_DATE,
+                                              FOREIGN KEY (account_id) REFERENCES accounts(id)
+      )
   `);
 
   db.run(`
@@ -40,7 +39,16 @@ db.serialize(() => {
                                          amount INTEGER NOT NULL
     )
   `);
-});
 
+  // ✅ Add this for Future Fund
+  db.run(`
+    CREATE TABLE IF NOT EXISTS future_fund (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      goal_name TEXT NOT NULL,
+      target_amount REAL NOT NULL,
+      saved_amount REAL DEFAULT 0
+    )
+  `);
+});
 
 module.exports = db;

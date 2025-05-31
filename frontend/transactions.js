@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 🔃 Load transactions (optional query)
+
   function loadTransactions(query = '') {
     fetch(`http://localhost:3000/transactions${query}`)
       .then(res => {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
           container.appendChild(li);
         });
 
-        // Add event listeners to the new buttons
+
         attachActionButtons();
       })
       .catch(err => {
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
-  // 🧩 Attach listeners to delete & edit buttons
+
   function attachActionButtons() {
     container.querySelectorAll('.delete-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -98,14 +98,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 🧼 Cancel Edit
+
   if (cancelEdit) {
     cancelEdit.addEventListener('click', () => {
       editModal.style.display = 'none';
     });
   }
 
-  // 💾 Submit Edit
+
   if (editForm) {
     editForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 🔍 Filter form
+
   if (filterForm) {
     filterForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 🎛️ Show/Hide Filter Popup
+
   if (filterToggle && filterPopup) {
     filterToggle.addEventListener('click', () => {
       const isOpen = filterPopup.style.display === 'block';
@@ -150,6 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 🟢 Initial load
+ 
   loadTransactions();
 });

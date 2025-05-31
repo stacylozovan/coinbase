@@ -33,6 +33,16 @@ exports.delete = (req, res) => {
     res.json({ message: 'Transaction deleted', id });
   });
 };
+// Get a transaction by ID (used by edit button)
+exports.getById = (req, res) => {
+  const id = req.params.id;
+  Transaction.getById(id, (err, row) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (!row) return res.status(404).json({ message: 'Transaction not found' });
+    res.json(row);
+  });
+};
+
 // Update a transaction by ID
 exports.update = (req, res) => {
   const id = req.params.id;
