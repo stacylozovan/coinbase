@@ -32,8 +32,8 @@
       <section class="card" style="max-width: 800px; width: 100%; margin-top: 2rem;">
       <form id="transaction-form" style="display: flex; flex-direction: column; gap: 1rem;">
         <div class="form-row">
-          <label for="account_id">Account ID:</label>
-          <input type="number" name="account_id" id="account_id" required />
+          <label for="date">Date:</label>
+          <input type="date" name="date" id="date" required />
         </div>
 
         <div class="form-row">
@@ -51,13 +51,19 @@
           <input type="text" name="description" id="description" />
         </div>
 
-        <button type="submit" style="padding: 0.5rem 1rem; background: var(--header-bg); color: white; border: none; border-radius: 0.5rem; cursor: pointer;">
-          ➕ Add Transaction
-        </button>
+        <div style="display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem;">
+          <a href="transactions.html" class="header-button" style="flex: 1; text-align: center; text-decoration: none;">
+            🔙 Go Back to All Transactions
+          </a>
+          <button type="submit" class="header-button" style="flex: 1;">
+            ➕ Add Transaction
+          </button>
+        </div>
       </form>
 
+        <p id="result-msg" style="margin-top: 1rem;"></p>
 
-      <p id="result-msg" style="margin-top: 1rem;"></p>
+
       </section>
     </main>
   </div>

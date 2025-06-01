@@ -1,12 +1,22 @@
 const form = document.getElementById('transaction-form');
 const result = document.getElementById('result-msg');
 const themeToggle = document.getElementById('themeToggle');
+
+// Theme toggle
 if (themeToggle) {
   themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark');
   });
 }
 
+
+const dateInput = document.getElementById('date');
+if (dateInput) {
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.value = today;
+}
+
+// Form submission
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
@@ -22,9 +32,12 @@ form.addEventListener('submit', (e) => {
     .then(res => res.json())
     .then(response => {
       if (response.id) {
-        result.textContent = "✅ Transaction added successfully!";
-        form.reset();
-      } else {
+        result.textContent = "✅ Transaction added successfully! Redirecting...";
+
+        setTimeout(() => {
+          window.location.href = 'transactions.html';
+        }, 1000);
+    } else {
         result.textContent = "❌ Failed to add transaction.";
       }
     })

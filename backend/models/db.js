@@ -19,18 +19,16 @@ db.serialize(() => {
                                           balance REAL DEFAULT 0
     )
   `);
-
   db.run(`
     CREATE TABLE IF NOT EXISTS transactions (
                                               id INTEGER PRIMARY KEY AUTOINCREMENT,
-                                              account_id INTEGER NOT NULL,
+                                              date TEXT NOT NULL,
                                               amount REAL NOT NULL,
-                                              category TEXT,
-                                              description TEXT,
-                                              date TEXT DEFAULT CURRENT_DATE,
-                                              FOREIGN KEY (account_id) REFERENCES accounts(id)
-      )
+                                              category TEXT NOT NULL,
+                                              description TEXT
+    )
   `);
+
 
   db.run(`
     CREATE TABLE IF NOT EXISTS budgets (

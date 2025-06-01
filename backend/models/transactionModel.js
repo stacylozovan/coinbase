@@ -36,10 +36,11 @@ const Transaction = {
   },
 
   create: (data, callback) => {
-    const { account_id, amount, category, description, date } = data;
+    const { date, amount, category, description } = data;
+
     db.run(
-      'INSERT INTO transactions (account_id, amount, category, description, date) VALUES (?, ?, ?, ?, ?)',
-      [account_id, amount, category, description, date || new Date().toISOString().split('T')[0]],
+      'INSERT INTO transactions (date, amount, category, description) VALUES (?, ?, ?, ?)',
+      [date || new Date().toISOString().split('T')[0], amount, category, description],
       function (err) {
         callback(err, { id: this.lastID });
       }

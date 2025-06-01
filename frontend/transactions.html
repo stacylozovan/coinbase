@@ -74,7 +74,14 @@
               <input type="text" name="category" placeholder="Category (e.g. Food)" />
               <input type="number" name="min" placeholder="Min Amount (€)" />
               <input type="number" name="max" placeholder="Max Amount (€)" />
-              <button type="submit" class="header-button">Apply Filter</button>
+              <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                <button type="submit" class="header-button" style="flex: 1;">
+                  🔍 Apply Filter
+                </button>
+                <button type="button" id="clearFilter" class="header-button" style="flex: 1;">
+                  🧹 Clear Filter
+                </button>
+              </div>
             </form>
           </div>
         </div>

@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(res => res.json())
       .then(response => {
         if (response.id) {
-          // Redirect back to Future Fund page
+
           window.location.href = 'futurefund.html';
         } else {
           fundMsg.textContent = '❌ Failed to add goal.';
