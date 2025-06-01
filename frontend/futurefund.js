@@ -74,36 +74,38 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Add new goal
-  fundForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const raw = Object.fromEntries(new FormData(fundForm).entries());
+  if (fundForm) {
+    fundForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const raw = Object.fromEntries(new FormData(fundForm).entries());
 
-    const data = {
-      goal_name: raw.goal,
-      target_amount: Number(raw.target),
-      saved_amount: Number(raw.saved) || 0
-    };
+      const data = {
+        goal_name: raw.goal,
+        target_amount: Number(raw.target),
+        saved_amount: Number(raw.saved) || 0
+      };
 
-    fetch('http://localhost:3000/futurefunds', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-      .then(res => res.json())
-      .then(response => {
-        if (response.id) {
-          fundMsg.textContent = '✅ Goal added!';
-          fundForm.reset();
-          loadFunds();
-        } else {
-          fundMsg.textContent = '❌ Failed to add goal.';
-        }
+      fetch('http://localhost:3000/futurefunds', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
       })
-      .catch(err => {
-        fundMsg.textContent = '❌ Server error.';
-        console.error(err);
-      });
-  });
+        .then(res => res.json())
+        .then(response => {
+          if (response.id) {
+            fundMsg.textContent = '✅ Goal added!';
+            fundForm.reset();
+            loadFunds();
+          } else {
+            fundMsg.textContent = '❌ Failed to add goal.';
+          }
+        })
+        .catch(err => {
+          fundMsg.textContent = '❌ Server error.';
+          console.error(err);
+        });
+    });
+  }
 
   // Initial load
   loadFunds();

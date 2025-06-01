@@ -55,8 +55,14 @@
     </header>
 
     <main>
-      <!-- 💖 Add New Budget Form -->
+      <!-- 📊 Monthly Budgets  -->
       <section class="card" style="margin-bottom: 2rem;">
+        <h2>Monthly Budgets</h2>
+        <div id="budget-list" style="display: grid; gap: 1rem;"></div>
+      </section>
+
+      <!-- ➕ Add New Budget Form  -->
+      <section class="card">
         <h2>Add New Budget Category</h2>
         <form id="budget-form" class="budget-form">
           <input type="text" name="category" placeholder="Category (e.g. Food)" required />
@@ -65,22 +71,10 @@
         </form>
         <p id="budget-msg"></p>
       </section>
-
-      <!-- Monthly Budgets -->
-      <section class="card">
-        <h2>Monthly Budgets</h2>
-        <div id="budget-list" style="display: grid; gap: 1rem;"></div>
-      </section>
     </main>
   </div>
 </div>
 
 <script src="budget.js"></script>
-<script>
-  document.getElementById('themeToggle')?.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-  });
-</script>
-
 </body>
 </html>
