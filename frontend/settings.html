@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Help & Support</title>
+  <title>Settings</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -17,14 +17,14 @@
     <a href="transactions.html">Transactions</a>
     <a href="budget.html">Budget</a>
     <a href="futurefund.html">Future Fund</a>
-    <a class="active" href="help.html">Help</a>
-    <a href="settings.html">Settings</a>
+    <a href="help.html">Help</a>
+    <a class="active" href="settings.html">Settings</a>
   </aside>
 
   <!-- Main Content -->
   <div style="flex-grow: 1; margin-left: 240px; padding: 1rem;">
     <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-      <h1 class="title">Help & Support</h1>
+      <h1 class="title">Settings</h1>
 
       <div style="display: flex; align-items: center; gap: 1rem;">
         <!-- Search Bar -->
@@ -54,45 +54,42 @@
       </div>
     </header>
 
-    <main class="center-wrapper" style="flex-direction: column;">
-      <!-- FAQ Card -->
+    <main class="center-wrapper" style="flex-direction: column; gap: 1.5rem;">
+      <!-- Settings Card -->
       <section class="card help-wrapper">
-        <h2>FAQ</h2>
-        <details open>
-          <summary>How do I add a transaction?</summary>
-          <p>Go to the "Transactions" page and fill out the form to add a new transaction.</p>
-        </details>
-        <details>
-          <summary>How can I edit or delete a goal?</summary>
-          <p>You can edit or delete a goal from the Goals page by clicking the pencil or trash icon.</p>
-        </details>
-        <details>
-          <summary>What is Future Fund?</summary>
-          <p>Future Fund helps you set and track long-term savings goals in your personal finance app.</p>
-        </details>
+        <h2>Preferences</h2>
+
+        <div class="form-row">
+          <label for="currency">Preferred Currency:</label>
+          <select id="currency">
+            <option value="EUR">€ Euro</option>
+            <option value="USD">$ US Dollar</option>
+            <option value="GBP">£ British Pound</option>
+          </select>
+        </div>
+
+        <div class="form-row" style="margin-top: 1rem;">
+          <label>
+            <input type="checkbox" id="emailUpdates" />
+            Receive monthly summary emails
+          </label>
+        </div>
+
+        <button style="margin-top: 1.5rem;" onclick="saveSettings()">💾 Save Settings</button>
+        <p id="settingsMessage" style="margin-top: 1rem;"></p>
       </section>
 
-      <!-- Contact Card -->
+      <!-- Reset Card -->
       <section class="card help-wrapper">
-        <h3>Contact Us</h3>
-        <p>If you need further assistance, please email us:</p>
-        <input type="email" placeholder="Enter your email" />
-        <button>Submit</button>
-      </section>
-
-      <!-- Tips Card -->
-      <section class="card help-wrapper">
-        <h3>💡 Helpful Tips</h3>
-        <ul>
-          <li>💡 Click the pencil icon✏️ to edit a transaction.</li>
-          <li>💡 Use the Future Fund to set and track your savings goals.</li>
-        </ul>
+        <h2>Reset</h2>
+        <p>This will reset all preferences to default. Transactions won’t be deleted.</p>
+        <button style="background-color: var(--danger); color: white; margin-top: 1rem;" onclick="resetSettings()">🔄 Reset Settings</button>
       </section>
     </main>
   </div>
 </div>
 
-<script src="help.js"></script>
+<script src="settings.js"></script>
 <script>
   document.getElementById('themeToggle')?.addEventListener('click', () => {
     document.body.classList.toggle('dark');

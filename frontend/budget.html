@@ -18,14 +18,40 @@
     <a class="active" href="budget.html">Budget</a>
     <a href="futurefund.html">Future Fund</a>
     <a href="help.html">Help</a>
-    <a href="#">Settings</a>
+    <a href="settings.html">Settings</a>
   </aside>
 
   <!-- Main Content -->
   <div class="main-content" style="flex-grow: 1; margin-left: 240px; padding: 1rem;">
-    <header style="display: flex; justify-content: space-between; align-items: center;">
+    <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
       <h1 class="title">Budget Overview</h1>
-      <button id="themeToggle" class="header-button">🌓 Theme</button>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <!-- Search Bar -->
+        <div style="position: relative;">
+          <input
+            type="text"
+            placeholder="Search"
+            class="search-input"
+            style="width: 160px;"
+          />
+          <span style="
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: gray;
+          ">🔍</span>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="themeToggle" class="header-button">🌓 Theme</button>
+
+        <!-- User Button -->
+        <button class="header-button">
+          <span>👤</span> Stacy Lozovan ▾
+        </button>
+      </div>
     </header>
 
     <main>
@@ -33,7 +59,7 @@
       <section class="card" style="margin-bottom: 2rem;">
         <h2>Add New Budget Category</h2>
         <form id="budget-form" class="budget-form">
-        <input type="text" name="category" placeholder="Category (e.g. Food)" required />
+          <input type="text" name="category" placeholder="Category (e.g. Food)" required />
           <input type="number" name="amount" placeholder="Budget Amount (€)" required />
           <button type="submit" class="header-button">➕ Add Budget</button>
         </form>
@@ -49,6 +75,12 @@
   </div>
 </div>
 
-     <script src="budget.js"></script>
+<script src="budget.js"></script>
+<script>
+  document.getElementById('themeToggle')?.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+  });
+</script>
+
 </body>
 </html>
