@@ -286,3 +286,19 @@ body.dark {
     flex-direction: column;
   }
 }
+#editModal input {
+  background: rgba(255, 255, 255, 0.50); /* semi-transparent white */
+  backdrop-filter: blur(12px);
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 0.6rem;
+  font-size: 1rem;
+  font-family: 'Open Sans';
+}
+body.dark #editModal input {
+  background-color: rgba(31, 31, 31, 0.9);
+  color: white;
+  border: 1px solid #555;
+}
+
+
