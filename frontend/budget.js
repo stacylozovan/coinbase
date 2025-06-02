@@ -11,17 +11,22 @@ const budgetMsg = document.getElementById('budget-msg');
 
 // Load budgets from backend
 function loadBudgets() {
-  fetch('http://localhost:3000/budgets')
-    .then(res => res.json())
-    .then(budgets => {
+  Promise.all([
+    fetch('http://localhost:3000/budgets').then(res => res.json()),
+    fetch('http://localhost:3000/transactions').then(res => res.json())
+  ])
+    .then(([budgets, transactions]) => {
       budgetList.innerHTML = '';
 
       budgets.forEach(budget => {
+
+        const spent = transactions
+          .filter(tx => tx.category.toLowerCase() === budget.category.toLowerCase())
+          .reduce((sum, tx) => sum + Number(tx.amount), 0);
+
         const card = document.createElement('div');
         card.className = 'card';
         card.style.marginBottom = '1rem';
-
-        const spent = Math.floor(Math.random() * budget.amount); // temporary
 
         card.innerHTML = `
           <h3>${budget.category}</h3>
@@ -39,7 +44,6 @@ function loadBudgets() {
 
         budgetList.appendChild(card);
 
-        // ✅ Attach delete handler right here, after the card is added
         const deleteBtn = card.querySelector('.delete-btn');
         deleteBtn.addEventListener('click', () => {
           const confirmDelete = confirm(`Delete budget for ${budget.category}?`);
@@ -48,9 +52,7 @@ function loadBudgets() {
               method: 'DELETE'
             })
               .then(res => res.json())
-              .then(() => {
-                loadBudgets(); // refresh after delete
-              })
+              .then(() => loadBudgets())
               .catch(err => {
                 alert('❌ Failed to delete.');
                 console.error(err);

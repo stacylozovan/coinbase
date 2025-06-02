@@ -23,33 +23,59 @@
 
   <!-- Main Content -->
   <div style="flex-grow: 1; margin-left: 240px; padding: 1rem;">
-    <header style="display: flex; justify-content: space-between; align-items: center;">
+    <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
       <h1 class="title">Add a New Transaction</h1>
-      <button id="themeToggle">🌓 Theme</button>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <!-- Search Bar -->
+        <div style="position: relative;">
+          <input
+            type="text"
+            placeholder="Search"
+            class="search-input"
+            style="width: 160px;"
+          />
+          <span style="
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: gray;
+      ">🔍</span>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="themeToggle" class="header-button">🌓 Theme</button>
+
+        <!-- User Button -->
+        <button class="header-button">
+          <span>👤</span> Stacy Lozovan ▾
+        </button>
+      </div>
     </header>
 
     <main class="center-wrapper">
       <section class="card" style="max-width: 800px; width: 100%; margin-top: 2rem;">
-      <form id="transaction-form" style="display: flex; flex-direction: column; gap: 1rem;">
-        <div class="form-row">
-          <label for="date">Date:</label>
-          <input type="date" name="date" id="date" required />
-        </div>
+        <form id="transaction-form" style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="form-row">
+            <label for="date">Date:</label>
+            <input type="date" name="date" id="date" required />
+          </div>
 
-        <div class="form-row">
-          <label for="amount">Amount (€):</label>
-          <input type="number" name="amount" id="amount" required />
-        </div>
+          <div class="form-row">
+            <label for="category">Category:</label>
+            <input type="text" name="category" id="category" required />
+          </div>
 
-        <div class="form-row">
-          <label for="category">Category:</label>
-          <input type="text" name="category" id="category" required />
-        </div>
+          <div class="form-row">
+            <label for="amount">Amount (€):</label>
+            <input type="number" name="amount" id="amount" required />
+          </div>
 
-        <div class="form-row">
-          <label for="description">Description:</label>
-          <input type="text" name="description" id="description" />
-        </div>
+          <div class="form-row">
+            <label for="description">Description:</label>
+            <input type="text" name="description" id="description" />
+          </div>
 
         <div style="display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem;">
           <a href="transactions.html" class="header-button" style="flex: 1; text-align: center; text-decoration: none;">
