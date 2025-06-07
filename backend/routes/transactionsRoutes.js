@@ -10,5 +10,6 @@ router.get('/:id', controller.getById);
 
 router.put('/:id', controller.update);
 router.delete('/:id', controller.delete);
+router.get('/expenses/chart', controller.getExpensesByCategory);
 
 module.exports = router;

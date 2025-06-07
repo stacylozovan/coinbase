@@ -300,5 +300,35 @@ body.dark #editModal input {
   color: white;
   border: 1px solid #555;
 }
+#editBudgetModal input {
+  background: rgba(255, 255, 255, 0.50);
+  backdrop-filter: blur(12px);
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 0.6rem;
+  font-size: 1rem;
+  font-family: 'Open Sans';
+}
+body.dark #editBudgetModal input {
+  background-color: rgba(31, 31, 31, 0.9);
+  color: white;
+  border: 1px solid #555;
+}
+#editGoalModal input {
+  background: rgba(255, 255, 255, 0.50);
+  backdrop-filter: blur(12px);
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 0.6rem;
+  font-size: 1rem;
+  font-family: 'Open Sans';
+}
+
+body.dark #editGoalModal input {
+  background-color: rgba(31, 31, 31, 0.9);
+  color: white;
+  border: 1px solid #555;
+}
+
 
 

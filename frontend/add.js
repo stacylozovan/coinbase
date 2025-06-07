@@ -9,7 +9,7 @@ if (themeToggle) {
   });
 }
 
-
+// Set today's date as default
 const dateInput = document.getElementById('date');
 if (dateInput) {
   const today = new Date().toISOString().split('T')[0];
@@ -17,32 +17,31 @@ if (dateInput) {
 }
 
 // Form submission
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const data = Object.fromEntries(new FormData(form).entries());
 
-  fetch('http://localhost:3000/transactions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-    .then(res => res.json())
-    .then(response => {
-      if (response.id) {
-        result.textContent = "✅ Transaction added successfully! Redirecting...";
-
-        setTimeout(() => {
-          window.location.href = 'transactions.html';
-        }, 1000);
-    } else {
-        result.textContent = "❌ Failed to add transaction.";
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      result.textContent = "❌ An error occurred.";
+  try {
+    const res = await fetch('http://localhost:3000/transactions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
     });
+
+    const response = await res.json();
+
+    if (response.id) {
+      result.textContent = "✅ Transaction added successfully! Redirecting...";
+      setTimeout(() => {
+        window.location.href = 'transactions.html';
+      }, 1000);
+    } else {
+      result.textContent = "❌ Failed to add transaction.";
+    }
+
+  } catch (err) {
+    console.error(err);
+    result.textContent = "❌ An error occurred.";
+  }
 });

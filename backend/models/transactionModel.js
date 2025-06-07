@@ -51,14 +51,13 @@ const Transaction = {
     db.run('DELETE FROM transactions WHERE id = ?', [id], callback);
   },
 
-  // ✅ Your new update method is correctly placed here!
-  update: (id, data, callback) => {
-    const { account_id, amount, category, description, date } = data;
+    update: (id, data, callback) => {
+    const { amount, category, description, date } = data;
     db.run(
       `UPDATE transactions
-       SET account_id = ?, amount = ?, category = ?, description = ?, date = ?
+       SET amount = ?, category = ?, description = ?, date = ?
        WHERE id = ?`,
-      [account_id, amount, category, description, date, id],
+      [amount, category, description, date, id],
       function (err) {
         callback(err, { changes: this.changes });
       }

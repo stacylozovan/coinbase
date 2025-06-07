@@ -53,4 +53,19 @@ exports.update = (req, res) => {
     res.json({ message: 'Transaction updated', id });
   });
 };
+exports.getExpensesByCategory = (req, res) => {
+  const sql = `
+    SELECT category, ABS(SUM(amount)) as total
+    FROM transactions
+    WHERE amount < 0
+    GROUP BY category
+  `;
+
+  const db = require('../models/db');
+  db.all(sql, [], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+};
+
 

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const fundForm = document.getElementById('futurefund-form');
   const fundMsg = document.getElementById('result-msg');
 
-  fundForm.addEventListener('submit', (e) => {
+  fundForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const raw = Object.fromEntries(new FormData(fundForm).entries());
 
@@ -19,23 +19,24 @@ document.addEventListener('DOMContentLoaded', () => {
       saved_amount: Number(raw.saved) || 0
     };
 
-    fetch('http://localhost:3000/futurefunds', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-      .then(res => res.json())
-      .then(response => {
-        if (response.id) {
-
-          window.location.href = 'futurefund.html';
-        } else {
-          fundMsg.textContent = '❌ Failed to add goal.';
-        }
-      })
-      .catch(err => {
-        fundMsg.textContent = '❌ Server error.';
-        console.error(err);
+    try {
+      const res = await fetch('http://localhost:3000/futurefunds', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
       });
+
+      const response = await res.json();
+
+      if (response.id) {
+        window.location.href = 'futurefund.html';
+      } else {
+        fundMsg.textContent = '❌ Failed to add goal.';
+      }
+
+    } catch (err) {
+      fundMsg.textContent = '❌ Server error.';
+      console.error(err);
+    }
   });
 });
