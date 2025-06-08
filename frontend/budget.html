@@ -65,8 +65,8 @@
       <section class="card">
         <h2>Add New Budget Category</h2>
         <form id="budget-form" class="budget-form">
-          <input type="text" name="category" placeholder="Category (e.g. Food)" required />
-          <input type="number" name="amount" placeholder="Budget Amount (€)" required />
+          <input type="text" id="new-category" name="category" placeholder="Category (e.g. Food)" required />
+          <input type="number" id="new-amount" name="amount" placeholder="Budget Amount (€)" required />
           <button type="submit" class="header-button">➕ Add Budget</button>
         </form>
         <p id="budget-msg"></p>
@@ -90,6 +90,7 @@
 ">
   <h2 style="margin-top: 0;">Edit Budget</h2>
   <form id="edit-budget-form" style="display: flex; flex-direction: column; gap: 1rem;">
+    <input type="hidden" name="id" />
     <input type="text" name="category" placeholder="Category" required />
     <input type="number" name="amount" placeholder="Budget Amount (€)" required />
     <div style="display: flex; justify-content: flex-end; gap: 1rem;">

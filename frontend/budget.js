@@ -71,7 +71,7 @@ async function loadBudgets() {
       const editBtn = card.querySelector('.edit-btn');
       editBtn.addEventListener('click', () => {
         const { id, category, amount } = editBtn.dataset;
-        editBudgetForm.setAttribute('data-id', id);
+        editBudgetForm.id.value = id;
         editBudgetForm.category.value = category;
         editBudgetForm.amount.value = amount;
         editBudgetModal.style.display = 'block';
@@ -84,6 +84,31 @@ async function loadBudgets() {
   }
 }
 
+
+editBudgetForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const id = editBudgetForm.id.value;
+  const data = Object.fromEntries(new FormData(editBudgetForm).entries());
+
+  try {
+    await fetch(`http://localhost:3000/budgets/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    editBudgetModal.style.display = 'none';
+    loadBudgets();
+
+  } catch (err) {
+    alert('❌ Failed to update budget.');
+    console.error(err);
+  }
+});
+
+cancelBudgetEdit.addEventListener('click', () => {
+  editBudgetModal.style.display = 'none';
+});
 budgetForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const data = Object.fromEntries(new FormData(budgetForm).entries());
@@ -109,31 +134,6 @@ budgetForm.addEventListener('submit', async (e) => {
     console.error(err);
     budgetMsg.textContent = '❌ Server error.';
   }
-});
-
-editBudgetForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const id = editBudgetForm.getAttribute('data-id');
-  const data = Object.fromEntries(new FormData(editBudgetForm).entries());
-
-  try {
-    await fetch(`http://localhost:3000/budgets/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-
-    editBudgetModal.style.display = 'none';
-    loadBudgets();
-
-  } catch (err) {
-    alert('❌ Failed to update budget.');
-    console.error(err);
-  }
-});
-
-cancelBudgetEdit.addEventListener('click', () => {
-  editBudgetModal.style.display = 'none';
 });
 
 loadBudgets();

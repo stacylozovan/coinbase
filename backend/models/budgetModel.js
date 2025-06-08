@@ -20,11 +20,12 @@ const Budget = {
   update: (id, data, callback) => {
     const { category, amount } = data;
     db.run(
-      'UPDATE budgets SET category = ?, limit = ? WHERE id = ?',
+      'UPDATE budgets SET category = ?, amount = ? WHERE id = ?',
       [category, amount, id],
       callback
     );
   },
+
 
   delete: (id, callback) => {
     db.run('DELETE FROM budgets WHERE id = ?', [id], callback);

@@ -57,24 +57,29 @@
     </header>
 
     <!-- Summary Cards -->
-    <section style="display: flex; gap: 1rem; flex-wrap: wrap;">
-      <div class="card" style="flex: 1 1 200px;">
+    <section class="summary-cards">
+      <div class="summary-card">
+        <img src="resources/piggy_assets.png" alt="Assets Icon">
         <h3>Assets</h3>
-        <p id="assets-amount">0 €</p>
+        <p id="assets-amount" class="positive">900.00 €</p>
       </div>
-      <div class="card" style="flex: 1 1 200px;">
+      <div class="summary-card">
+        <img src="resources/piggy_balance.png" alt="Balance Icon">
         <h3>Balance</h3>
-        <p id="balance">Loading...</p>
+        <p id="balance" class="negative">-100.00 €</p>
       </div>
-      <div class="card" style="flex: 1 1 200px;">
+      <div class="summary-card">
+        <img src="resources/piggy_income.png" alt="Income Icon">
         <h3>Income</h3>
-        <p id="income-amount">0 €</p>
+        <p id="income-amount" class="positive">0 €</p>
       </div>
-      <div class="card" style="flex: 1 1 200px;">
+      <div class="summary-card">
+        <img src="resources/piggy_expense.png" alt="Expense Icon">
         <h3>Expense</h3>
-        <p id="expense-amount">0 €</p>
+        <p id="expense-amount" class="negative">0 €</p>
       </div>
     </section>
+
 
     <!-- Monthly Budget (real data) -->
     <section class="card">

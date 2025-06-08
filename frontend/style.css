@@ -11,12 +11,21 @@
   --button-bg: #ffffff;
   --button-text: #1f2937;
 
+  /* Enhanced card variables */
+  --card-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+  --card-border: 1px solid rgba(255, 255, 255, 0.3);
+  --card-hover-shadow: 0 8px 32px rgba(236, 72, 153, 0.15);
 }
 
+/* Global reset and smooth scrolling */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -25,11 +34,13 @@ body {
   background-size: cover;
   color: var(--text);
   padding: 1rem;
+  line-height: 1.6;
 }
 
-
+/* Typography */
 h1, h2, h3, .title {
   font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.5px;
 }
 
 /* Header */
@@ -46,25 +57,215 @@ nav a {
   margin-left: 1rem;
   text-decoration: none;
   font-weight: 600;
+  transition: color 0.3s ease;
 }
 
+nav a:hover {
+  color: var(--accent);
+}
+
+/* Enhanced Cards */
 .card {
-  background: rgba(255, 255, 255, 0.8);
-  padding: 1.5rem;
-  border-radius: 1rem;
+  background: var(--card-gradient);
+  border: var(--card-border);
+  padding: 2rem;
+  border-radius: 1.5rem;
   box-shadow: var(--shadow);
   margin-bottom: 1.5rem;
-  backdrop-filter: blur(6px);
-}
-body.dark .card {
-  background: rgba(31, 31, 31, 0.8);
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
 }
 
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--success));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--card-hover-shadow);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 100%);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+body.dark .card {
+  background: var(--card-gradient);
+  backdrop-filter: blur(20px);
+}
+
+/* Summary Cards Section - NEW */
+.summary-cards {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  flex: 1 1 180px;
+  background: var(--card-gradient);
+  border: var(--card-border);
+  padding: 1.2rem;
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.summary-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--success));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.summary-card:hover::before {
+  opacity: 1;
+}
+
+/* Summary card images */
+.summary-card img {
+  width: 80px !important;
+  height: 80px !important;
+  object-fit: contain;
+  margin-bottom: 1rem !important;
+  opacity: 0.9;
+  transition: transform 0.3s ease;
+}
+
+.summary-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Summary card titles */
+.summary-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+/* Summary card values */
+.summary-card p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  background: linear-gradient(135deg, var(--header-bg), var(--success));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+}
+
+/* Dashboard Cards */
+.dashboard-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background: var(--card-gradient);
+  border: var(--card-border);
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.metric-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(248, 182, 210, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.metric-card:hover::after {
+  opacity: 1;
+}
+
+.metric-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 40px rgba(236, 72, 153, 0.2);
+}
+
+.metric-card .icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+  transition: transform 0.3s ease;
+}
+
+.metric-card:hover .icon {
+  transform: scale(1.1);
+}
+
+.metric-card .value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--header-bg), var(--success));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.metric-card .label {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 
 /* Sidebar */
 .sidebar {
-  background: rgba(255, 255, 255, 0.8); /* semi-transparent for glass effect */
+  background: rgba(255, 255, 255, 0.8);
   padding: 1rem;
   width: 220px;
   border-radius: 1rem;
@@ -74,13 +275,14 @@ body.dark .card {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  backdrop-filter: blur(6px); /* glassmorphism */
+  backdrop-filter: blur(6px);
+  transition: background-color 0.3s ease;
 }
+
 body.dark .sidebar {
   background: rgba(31, 31, 31, 0.8);
   backdrop-filter: blur(6px);
 }
-
 
 .sidebar a {
   text-decoration: none;
@@ -90,6 +292,7 @@ body.dark .sidebar {
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .sidebar a.active,
@@ -97,6 +300,7 @@ body.dark .sidebar {
   background: var(--accent);
   color: white;
 }
+
 .sidebar h2 {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.5rem;
@@ -108,43 +312,191 @@ body.dark .sidebar {
 }
 
 
-/* Dark Theme */
-body.dark {
-  --bg: #121212;
-  --text: #e5e7eb;
-  --card-bg: #1f1f1f;
-  --header-bg: #7c3aed;
-  --accent: #9f7aea;
-  --button-bg: #2a2a2a;
-  --button-text: #f3f3f3;
-
+.main-content {
+  transition: margin-left 0.3s ease;
 }
 
-/* Responsive */
+/* Monthly Budget Card  */
+.monthly-budget-card {
+  background: var(--card-gradient);
+  border: var(--card-border);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px);
+  margin-bottom: 2rem;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.monthly-budget-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 35px rgba(236, 72, 153, 0.18);
+}
+
+.monthly-budget-card h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  background: linear-gradient(135deg, var(--header-bg), var(--success));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Enhanced horizontal budget container */
+#dashboard-budget {
+  display: flex !important;
+  gap: 1.5rem !important;
+  flex-wrap: wrap !important;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+/* Individual budget items */
+#dashboard-budget > div {
+  background: rgba(255, 255, 255, 0.6);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  text-align: center;
+  min-width: 180px;
+  flex: 1 1 calc(25% - 1.125rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#dashboard-budget > div:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Budget item content style */
+#dashboard-budget > div strong {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+#dashboard-budget > div {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+#dashboard-budget > div span {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--header-bg);
+  margin-top: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Responsive design for budget cards */
+@media (max-width: 1024px) {
+  #dashboard-budget > div {
+    flex: 1 1 calc(33.333% - 1rem);
+  }
+}
+
 @media (max-width: 768px) {
-  .sidebar {
-    position: static;
-    width: 100%;
-    height: auto;
-    flex-direction: row;
-    overflow-x: auto;
-  }
-  .main-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    overflow-y: auto;
+  #dashboard-budget {
+    gap: 1rem !important;
   }
 
-  header {
-    flex-direction: column;
-    align-items: flex-start;
+  #dashboard-budget > div {
+    flex: 1 1 calc(50% - 0.5rem); /* 2 cards per row on small screens */
+    min-width: 150px;
+    padding: 1.25rem;
   }
 
-  nav a {
-    margin: 0.5rem 0 0;
-    display: block;
+  #dashboard-budget > div strong {
+    font-size: 1.5rem;
   }
- }
+
+  #dashboard-budget > div span {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #dashboard-budget > div {
+    flex: 1 1 100%; /* 1 card per row on very small screens */
+  }
+}
+
+/* Dark mode adjustments */
+body.dark #dashboard-budget > div {
+  background: rgba(47, 47, 47, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text);
+}
+
+body.dark #dashboard-budget > div:hover {
+  background: rgba(47, 47, 47, 0.8);
+}
+
+body.dark #dashboard-budget > div span {
+  color: var(--accent);
+}
+
+/* Financial Statistics Card */
+.financial-stats-card {
+  background: var(--card-gradient);
+  border: var(--card-border);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px);
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.financial-stats-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 35px rgba(236, 72, 153, 0.18);
+}
+
+.financial-stats-card h2 {
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  text-align: center;
+  background: linear-gradient(135deg, var(--header-bg), var(--success));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.chart-container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Chart container proper sizing */
+#categoryChart {
+  max-width: 100%;
+  height: 300px;
+}
+
+.chart-container canvas {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Search input and Buttons */
 .search-input {
   padding: 0.5rem 2rem 0.5rem 2.5rem;
   border-radius: 1rem;
@@ -153,6 +505,11 @@ body.dark {
   font-family: 'Open Sans';
   color: var(--button-text);
   outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: var(--accent);
 }
 
 .header-button {
@@ -164,7 +521,29 @@ body.dark {
   font-family: 'Open Sans';
   cursor: pointer;
   color: var(--button-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+.header-button:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+/* Focus states for accessibility */
+.search-input:focus,
+.header-button:focus,
+.sidebar a:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button:focus,
+input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Centered wrapper (for forms or content cards) */
 .center-wrapper {
   display: flex;
   justify-content: center;
@@ -172,9 +551,12 @@ body.dark {
   min-height: 50vh;
   padding: 2rem;
 }
+
+/* Forms */
 .form-row {
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
 }
 
 .form-row label {
@@ -189,19 +571,25 @@ body.dark {
   border: 1px solid #ccc;
   font-size: 1rem;
   font-family: 'Open Sans';
+  transition: border-color 0.3s ease;
 }
 
+.form-row input:focus {
+  border-color: var(--accent);
+}
+
+/* Budget section */
 #budget-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
 }
 
-
 #budget-list .card {
   margin: 0;
   padding: 1rem;
 }
+
 .budget-form {
   display: flex;
   flex-direction: column;
@@ -217,6 +605,7 @@ body.dark {
   font-family: 'Open Sans';
   font-size: 1rem;
   outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .budget-form input:focus {
@@ -227,24 +616,28 @@ body.dark {
 .budget-form button {
   padding: 0.75rem 1rem;
   border: 2px solid var(--accent);
-  background-color: white;
+  background-color: var(--button-bg);
   color: var(--text);
   font-weight: 600;
   font-size: 1rem;
   border-radius: 1.5rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .budget-form button:hover {
   background-color: var(--accent);
   color: white;
 }
+
+/* Helper Wrapper */
 .help-wrapper {
   max-width: 1100px;
   width: 100%;
   margin: 2rem auto;
 }
+
+/* Card Text and UI Elements */
 .card p,
 .card summary,
 .card input,
@@ -252,25 +645,271 @@ body.dark {
 .card ul li {
   font-size: 1.05rem;
 }
-@media (max-width: 768px) {
-  .center-wrapper {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 1rem;
-  }
 
+/* Transaction list styling */
+#transaction-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#transaction-list li {
+  list-style: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.transaction-entry {
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.transaction-entry:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: translateX(4px);
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.transaction-item .category {
+  font-weight: 600;
+  flex: 1;
+}
+
+.transaction-item .amount {
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.transaction-item .amount.positive {
+  color: var(--success);
+}
+
+.transaction-item .amount.negative {
+  color: var(--danger);
+}
+
+.transaction-item .date {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Enhanced card values */
+.card p.positive,
+.summary-card p.positive {
+  background: linear-gradient(135deg, var(--success), #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card p.negative,
+.summary-card p.negative {
+  background: linear-gradient(135deg, var(--danger), #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card p.error-state,
+.summary-card p.error-state {
+  color: var(--danger);
+  font-size: 1rem;
+}
+
+/* Loading and error states */
+.loading, .error, .no-data, .no-budget-data {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.error {
+  color: var(--danger);
+}
+
+/* Modal inputs with glassmorphism effect */
+#editModal input,
+#editBudgetModal input,
+#editGoalModal input {
+  background: rgba(255, 255, 255, 0.50);
+  backdrop-filter: blur(12px);
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 0.6rem;
+  font-size: 1rem;
+  font-family: 'Open Sans';
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark #editModal input,
+body.dark #editBudgetModal input,
+body.dark #editGoalModal input {
+  background-color: rgba(31, 31, 31, 0.9);
+  color: white;
+  border: 1px solid #555;
+}
+
+/* Enhanced card stats for charts */
+.card-stats {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.card-stats:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.card-stats canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85% !important;
+  height: 85% !important;
+}
+
+/* Dark Theme Variables */
+body.dark {
+  --bg: #121212;
+  --text: #e5e7eb;
+  --card-bg: #1f1f1f;
+  --header-bg: #7c3aed;
+  --accent: #9f7aea;
+  --button-bg: #2a2a2a;
+  --button-text: #f3f3f3;
+  --card-gradient: linear-gradient(135deg, rgba(31, 31, 31, 0.9) 0%, rgba(47, 47, 47, 0.7) 100%);
+  --card-border: 1px solid rgba(255, 255, 255, 0.1);
+  --card-hover-shadow: 0 8px 32px rgba(124, 58, 237, 0.15);
+}
+
+body.dark .metric-card,
+body.dark .monthly-budget-card,
+body.dark .financial-stats-card,
+body.dark .summary-card {
+  background: var(--card-gradient);
+  border: var(--card-border);
+}
+
+body.dark .summary-card h3 {
+  color: var(--text);
+}
+
+body.dark .budget-item {
+  background: rgba(47, 47, 47, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark .budget-item:hover {
+  background: rgba(47, 47, 47, 0.8);
+}
+
+body.dark .chart-container {
+  background: rgba(47, 47, 47, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
   .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
     flex-direction: row;
     overflow-x: auto;
-    gap: 0.5rem;
     padding: 0.5rem;
-    height: auto;
   }
 
   .sidebar a {
     flex: 1 1 auto;
     text-align: center;
     white-space: nowrap;
+  }
+
+  .main-content {
+    max-width: 1200px;
+    margin: 0 auto !important;
+    overflow-y: auto;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav a {
+    margin: 0.5rem 0 0;
+    display: block;
+  }
+
+  .dashboard-metrics {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .metric-card {
+    padding: 1.5rem;
+  }
+
+  .metric-card .value {
+    font-size: 2rem;
+  }
+
+  .budget-items {
+    grid-template-columns: 1fr;
+  }
+
+  .center-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+  }
+
+  .summary-cards {
+    flex-direction: column;
+  }
+
+  .summary-card {
+    flex: none;
+    min-height: 200px;
+    padding: 1.5rem;
+  }
+
+  .summary-card img {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .summary-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .summary-card p {
+    font-size: 1.8rem;
   }
 }
 
@@ -286,49 +925,56 @@ body.dark {
     flex-direction: column;
   }
 }
-#editModal input {
-  background: rgba(255, 255, 255, 0.50); /* semi-transparent white */
-  backdrop-filter: blur(12px);
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  padding: 0.6rem;
-  font-size: 1rem;
-  font-family: 'Open Sans';
-}
-body.dark #editModal input {
-  background-color: rgba(31, 31, 31, 0.9);
-  color: white;
-  border: 1px solid #555;
-}
-#editBudgetModal input {
-  background: rgba(255, 255, 255, 0.50);
-  backdrop-filter: blur(12px);
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  padding: 0.6rem;
-  font-size: 1rem;
-  font-family: 'Open Sans';
-}
-body.dark #editBudgetModal input {
-  background-color: rgba(31, 31, 31, 0.9);
-  color: white;
-  border: 1px solid #555;
-}
-#editGoalModal input {
-  background: rgba(255, 255, 255, 0.50);
-  backdrop-filter: blur(12px);
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  padding: 0.6rem;
-  font-size: 1rem;
-  font-family: 'Open Sans';
+
+#categoryChart {
+  max-width: 100%;
+  height: 600px !important;
+  width: 100% !important;
+  position: relative;
 }
 
-body.dark #editGoalModal input {
-  background-color: rgba(31, 31, 31, 0.9);
-  color: white;
-  border: 1px solid #555;
+.chart-container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  overflow: hidden; /* Prevent any overflow movement */
+}
+
+.chart-container canvas {
+  max-width: 100% !important;
+  height: auto !important;
+  position: static !important;
 }
 
 
+canvas, .chart-container {
+  transition: none !important;
+  animation: none !important;
+}
+
+.budget-horizontal-container {
+  display: flex !important;
+  gap: 1.5rem !important;
+  flex-wrap: wrap !important;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+.budget-item {
+  padding: 1rem;
+  background: var(--card-bg);
+  border-radius: 1rem;
+  text-align: center;
+  width: 160px;
+  box-shadow: var(--shadow);
+}
+
+.budget-icon-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 0.75rem;
+}
 
